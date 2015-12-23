@@ -97,7 +97,7 @@ main()
   To use the app simply download the zip file, place the encrypt_decrypt.py file in the same directory as the file you would like to encrypt or decrypt.
   
 ## Contributions:
-  If you would like to add some of your own mojo to the app then email me : cormackandy@gmail.com/ twitter : cormackandy@twitter.com
+  If you would like to add some of your own mojo to the app then email me : cormackandy@hotmail.com and  twitter : cormackandy@twitter.com
   
 ## Licence:
 The MIT License (MIT)
