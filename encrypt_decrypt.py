@@ -1,30 +1,23 @@
 import sys
 
-my_key = {
-'a':'f','b':'g','c':'h','d':'i','e':'j','f':'a','g':'b','h':'c',
-'i':'d','j':'e','k':'p','l':'q','m':'r','n':'s','o':'t','p':'k',
-'q':'l','r':'m','s':'n','t':'o','u':'z','v':'7','w':'4','x':'3',	
-'y':'2','z':'u','3':'x','2':'y','4':'w', '7':'v', 
-'A':'F','B':'G','C':'H','D':'I','E':'J','F':'A','G':'B','H':'C',
-'I':'D','J':'E','K':'P','L':'Q','M':'R','N':'S','O':'T','P':'K',
-'Q':'L','R':'M','S':'N','T':'O','U':'Z','V':'8','W':'5','X':'0',	
-'Y':'1','Z':'U','0':'X','1':'Y','5':'W','8':'V'  
-}
+from key import *
 
-
-def handel_filename_input(option):
-  if option.lower() == 'e':
-    input_file = input("Enter the filename of the file you want to encrypt!  ")
+# the second parameter iotype flag refers to wether Input or Output is in question
+# the first argument option refers to wether the user is encrypting or decrypting a file. e = encryption d=decryption
+def handel_filename_input_output(option,iotype):
+  if iotype.lower()=='i':
+    if option.lower() == 'e':
+      input_file = input("Enter the filename of the file you want to encrypt!  ")
+    else:
+      input_file = input("Enter the filename of the file you want to decrypt!  ")
+    return input_file
   else:
-    input_file = input("Enter the filename of the file you want to decrypt!  ")
-  return input_file
+    if option.lower() == 'e':
+      output_file = input("Enter the output filename which will hold the encrypted data! ")
+    else:
+      output_file = input("Enter the output filename which will hold the decrypted data! ")
+    return output_file
 
-def handel_filename_output(option):  
-  if option.lower() == 'e':
-    output_file = input("Enter the output filename which will hold the encrypted data! ")
-  else:
-    output_file = input("Enter the output filename which will hold the decrypted data! ")
-  return output_file
 
 def enc_decr(mystring):
   result = []
@@ -37,41 +30,48 @@ def enc_decr(mystring):
       
 
 def read_write_file(infile,outfile,type):
-  reader = open(infile,'r')
-  writer = open(outfile,'w')
-  for line in reader:
-    try:
-      my_string = enc_decr(line)
-      writer.write(my_string)
-      if type.lower() =='e':
-        print("Your file was encrypted!")
-      else:
-        print("Your file was decrypted!")
-    except:
+  try:
+    reader = open(infile,'r')
+    writer = open(outfile,'w')
+    for line in reader:
+      try:
+        my_string = enc_decr(line)
+        writer.write(my_string)
+        if type.lower() =='e':
+          print("Your file was encrypted!")
+        else:
+          print("Your file was decrypted!")
+      except:
         if type.lower() =='e':
           print("There was an error encrypting the file!")
         else:
           print("There was an error decrypting the file!")
-  reader.close()
-  writer.close()
+    reader.close()
+    writer.close()
+  except:
+    print("There is an issue with either the input or output file. Please check!!")
 
-print("WELCOME TO MY FILE ENCRIPTION APP! ")
+def user_option():
+  return input("Would you like to decrypt another file [Y/n]").lower()
+  
+  
+print("WELCOME TO CORM ENCRIPTION AND DECRYPTION CYPHER! ")
 
 def main():
   while True:
-    input_type=input("To encrypt a file [E] to decrypt [D]and to quit the app [Q]").lower()
+    input_type=input("To encrypt a file [E] to decrypt [D] and to quit the app [Q]").lower()
     if  input_type =='q':
       break
     elif input_type =='d':
-      input_file = handel_filename_input("d")
-      output_file = handel_filename_output("d")
+      input_file = handel_filename_input_output("d",'i')
+      output_file = handel_filename_input_output("d",'o')
       read_write_file(input_file,output_file,'d')
-      option = input("Would you like to decrypt another file [Y/n]").lower()
+      option=user_option()
     else:
-      input_file = handel_filename_input("e")
-      output_file = handel_filename_output("e")
+      input_file = handel_filename_input_output("e","i")
+      output_file = handel_filename_input_output("e","o")
       read_write_file(input_file,output_file,'e')
-      option = input("Would you like to encrypt another file [Y/n]").lower()
+      option=user_option()
     if option !='n':
       main()
       continue
