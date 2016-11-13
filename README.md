@@ -1,5 +1,5 @@
 ## Description:
-   A python command line app that lets you encrypt and decrypt a file based on cesar psypher.
+   A python command line app that lets you encrypt and decrypt a file based on cesar cypher.
    
 
 ## Example:
