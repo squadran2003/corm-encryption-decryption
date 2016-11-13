@@ -1,5 +1,5 @@
 ## Description:
-   A python command line app that lets you encrypt and decrypt a file.
+   A python command line app that lets you encrypt and decrypt a file based on cesar psypher.
    
 
 ## Example:
@@ -91,7 +91,7 @@ main()
 ```
 
 ## Motivation:
-  The idea for this app came from the caesar's cypher shift cryptography. So i though let me see if i can    come up with my own encryption/ decryption key.
+  The idea for this app came from the caesar's cypher shift cryptography. So i though let me see if i can come up with my own encryption/ decryption key.
   
 ## Installation:
   To use the app simply download the zip file, place the encrypt_decrypt.py file in the same directory as the file you would like to encrypt or decrypt.
